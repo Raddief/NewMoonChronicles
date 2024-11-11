@@ -11,11 +11,12 @@ public class GameLoop
 
     private void Update()
     {
-        // Game logic
+        Console.WriteLine("Astronaut A and B are on the moon.");
+        Console.ReadKey();
     }
 
     private void Render()
     {
-        // Display game state
+        Console.Clear();
     }
 }
