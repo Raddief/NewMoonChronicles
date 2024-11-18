@@ -1,15 +1,14 @@
 public class CoreEvent
 {
     private Player player;
+
     public CoreEvent(Player player)
     {
-        player = player;
+        this.player = player;
     }
 
     public Player PickArchetype()
     {
-        // The player has it's own EntityStats object
-
         Console.WriteLine("What's your identity? ");
         Console.WriteLine("1. Warrior");
         Console.WriteLine("2. Mage");
@@ -33,5 +32,7 @@ public class CoreEvent
                 PickArchetype();
                 break;
         }
+
+        return player;
     }
 }

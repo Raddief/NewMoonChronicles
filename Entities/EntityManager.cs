@@ -20,7 +20,7 @@ public class EntityManager
         {
             return _entities[id];
         }
-        return null;
+        throw new KeyNotFoundException($"Entity with id '{id}' not found.");
     }
 
     public void GainExperience(string id, int xp)
@@ -43,7 +43,11 @@ public class EntityManager
         if (File.Exists(filePath))
         {
             var json = File.ReadAllText(filePath);
-            _entities = JsonSerializer.Deserialize<Dictionary<string, EntityStats>>(json);
+            var deserializedEntities = JsonSerializer.Deserialize<Dictionary<string, EntityStats>>(json);
+            if (deserializedEntities != null)
+            {
+                _entities = deserializedEntities;
+            }
         }
     }
 

@@ -1,50 +1,40 @@
+using System;
+using System.IO;
+using System.Text.Json;
+using System.Collections.Generic;
+
+public class Story
+{
+    public int id { get; set; }
+    public string? content { get; set; }
+    public string? eventName { get; set; }
+}
+
+public class StoryCollection
+{
+    public List<Story>? stories { get; set; }
+}
 public class GameLoop
 {
-    private Player _player;
-    private List<string> _storyLines = new List<string>();
-    private int _currentLineIndex = 0;
-    private CoreEvent _coreEvent;
 
-    public GameLoop()
-    {
-        _coreEvent = new CoreEvent();
-    }
+    private Player? player;
+    private CoreEvent? coreEvent;
+    private int i = 1;
+
     public void Start()
     {
-        LoadStoryLines("Data/Levels.txt");
-
+        player = new Player("Player", 0, 0, 0, 0, 0, 0);
         while (true)
         {
-            Update();
+            Update(i);
             Render();
+            i++;
         }
     }
 
-    private void InitializePlayer()
+    private void Update(int i)
     {
-        GameInitializer initializer = new GameInitializer();
-        _player = initializer.InitializePlayer();
-    }
-
-    private void Update()
-    {
-        if (_currentLineIndex < _storyLines.Count)
-        {
-            string line = _storyLines[_currentLineIndex];
-            if (line.StartsWith("MAINEVENT"))
-            {
-                ExecuteCoreEvent(line);
-            }
-            else
-            {
-                Console.WriteLine(line);
-            }
-            _currentLineIndex++;
-        }
-        else
-        {
-            Console.WriteLine("End of story.");
-        }
+        LoadStory("NewMoonChronicles/Data/Story.json", i);
         Console.ReadKey();
     }
 
@@ -53,34 +43,29 @@ public class GameLoop
         Console.Clear();
     }
 
-    private void LoadStoryLines(string filePath)
+    private void LoadStory(string jsonPath, int id)
     {
-        if (File.Exists(filePath))
+        string jsonString = File.ReadAllText(jsonPath);
+
+        StoryCollection? storyCollection = JsonSerializer.Deserialize<StoryCollection>(jsonString);
+
+        if (storyCollection != null && storyCollection.stories != null)
         {
-            var lines = File.ReadAllLines(filePath);
-            for (int i = 0; i < lines.Length; i++)
+            foreach (Story story in storyCollection.stories)
             {
-                if (!string.IsNullOrWhiteSpace(lines[i]) && !lines[i].StartsWith("//"))
+                if (story.id == id)
                 {
-                    if (lines[i].StartsWith("MAINEVENT"))
+                    Console.WriteLine(story.content);
+                    if (story.eventName != null && player != null)
                     {
-                        ExecuteCoreEvent(lines[i]);
-                    }
-                    else
-                    {
-                        _storyLines.Add(lines[i]);
+                        coreEvent = new CoreEvent(player);
+                        if (story.eventName == "PICK_ARCHETYPE")
+                        {
+                            player = coreEvent.PickArchetype();
+                        }
                     }
                 }
             }
         }
-    }
-
-    private void ExecuteCoreEvent(string eventLine)
-    {
-        if (eventLine.Contains("PICK_ARCHETYPE"))
-        {
-            _player = _coreEvent.PickArchetype();
-        }
-        // Add more core events as needed
     }
 }

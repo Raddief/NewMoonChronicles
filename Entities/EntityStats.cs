@@ -4,7 +4,7 @@ using System;
 public class EntityStats
 {
     public string Name { get; private set; }
-    public int HealthPoint { get; private set; }
+    public int HealthPoint { get; set; }
     public int AttackPower { get; private set; }
     public int DefensePoint { get; private set; }
     public int Agility { get; private set; }
@@ -35,6 +35,7 @@ public class EntityStats
     {
         Experience -= ExperienceToNextLevel();
         Level++;
+
         // Increase stats on level up
         HealthPoint += 10;
         AttackPower += 5;

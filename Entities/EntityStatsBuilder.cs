@@ -1,6 +1,6 @@
 public class EntityStatsBuilder
 {
-    private string name;
+    private string? name;
     private int healthPoint;
     private int attackPower;
     private int defensePoint;
@@ -52,6 +52,10 @@ public class EntityStatsBuilder
 
     public EntityStats Build()
     {
+        if (name == null)
+        {
+            throw new ArgumentNullException(nameof(name), "Name cannot be null");
+        }
         return new EntityStats(name, healthPoint, attackPower, defensePoint, agility, experience, level);
     }
 }

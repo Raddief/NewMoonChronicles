@@ -1,0 +1,14 @@
+{
+  "stories": [
+    {
+      "id": 1,
+      "content": "Once upon a time in a faraway land...\nThere was a brave adventurer who...",
+      "eventName": null
+    },
+    {
+      "id": 2,
+      "content": "It was a dark and stormy night...\nThe old house creaked in the wind...",
+      "eventName": "PICK_ARCHETYPE"
+    }
+  ]
+}

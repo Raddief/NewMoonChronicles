@@ -12,4 +12,13 @@ public abstract class Entity
     {
         _stats = new EntityStats(name, healthPoint, attackPower, defensePoint, agility, experience, level);
     }
+
+    public void TakeDamage(int damage)
+    {
+        _stats.HealthPoint -= damage;
+        if (_stats.HealthPoint < 0)
+        {
+            _stats.HealthPoint = 0;
+        }
+    }
 }
