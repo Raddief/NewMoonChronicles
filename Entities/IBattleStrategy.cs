@@ -8,7 +8,7 @@ public class FightStrategy : IBattleStrategy
     public void Execute(Player player, Enemy enemy)
     {
         Console.WriteLine("Player hit the enemy with his weapon");
-        enemy.TakeDamage(10)
+        enemy.TakeDamage(10);
     }
 }
 

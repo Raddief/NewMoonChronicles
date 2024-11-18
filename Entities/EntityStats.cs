@@ -10,9 +10,8 @@ public class EntityStats
     public int Agility { get; private set; }
     public int Experience { get; private set; }
     public int Level { get; private set; }
-    public IBattleStrategy BattleStrategy { get; private set; }
 
-    public EntityStats(string name, int healthPoint, int attackPower, int defensePoint, int agility, int experience, int level, IBattleStrategy battleStrategy)
+    public EntityStats(string name, int healthPoint, int attackPower, int defensePoint, int agility, int experience, int level)
     {
         Name = name;
         HealthPoint = healthPoint;
@@ -21,7 +20,6 @@ public class EntityStats
         Agility = agility;
         Experience = experience;
         Level = level;
-        BattleStrategy = battleStrategy;
     }
 
     public void GainExperience(int xp)

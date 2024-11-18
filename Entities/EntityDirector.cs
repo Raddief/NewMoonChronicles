@@ -17,7 +17,6 @@ public class EntityDirector
             .SetAgility(30)
             .SetExperience(0)
             .SetLevel(1)
-            .SetBattleStrategy(new FightStrategy);
             .Build();
     }
 
@@ -31,7 +30,6 @@ public class EntityDirector
             .SetAgility(40)
             .SetExperience(0)
             .SetLevel(1)
-            .SetBattleStrategy(new FightStrategy);
             .Build();
     }
 
@@ -45,7 +43,6 @@ public class EntityDirector
             .SetAgility(80)
             .SetExperience(0)
             .SetLevel(1)
-            .SetBattleStrategy(new FightStrategy);
             .Build();
     }
 }
