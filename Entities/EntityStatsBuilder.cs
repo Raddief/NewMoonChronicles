@@ -7,6 +7,7 @@ public class EntityStatsBuilder
     private int agility;
     private int experience;
     private int level;
+    private IBattleStrategy battleStrategy;
 
     public EntityStatsBuilder SetName(string name)
     {
@@ -50,8 +51,14 @@ public class EntityStatsBuilder
         return this;
     }
 
+    public EntityStatsBuilder SetBattleStrategy(IBattleStrategy battleStrategy)
+    {
+        this.battleStrategy = battleStrategy;
+        return this;
+    }
+
     public EntityStats Build()
     {
-        return new EntityStats(name, healthPoint, attackPower, defensePoint, agility, experience, level);
+        return new EntityStats(name, healthPoint, attackPower, defensePoint, agility, experience, level, battleStrategy);
     }
 }
