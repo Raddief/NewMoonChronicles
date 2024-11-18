@@ -1,20 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-
 public class GameLoop
 {
-    private List<string> _storyLines;
+    private Player _player;
+    private List<string> _storyLines = new List<string>();
     private int _currentLineIndex = 0;
+    private CoreEvent _coreEvent;
 
     public GameLoop()
     {
-        _storyLines = new List<string>();
-        LoadStoryLines("Data/Levels.txt");
+        _coreEvent = new CoreEvent();
     }
-
     public void Start()
     {
+        LoadStoryLines("Data/Levels.txt");
+
         while (true)
         {
             Update();
@@ -22,11 +20,25 @@ public class GameLoop
         }
     }
 
+    private void InitializePlayer()
+    {
+        GameInitializer initializer = new GameInitializer();
+        _player = initializer.InitializePlayer();
+    }
+
     private void Update()
     {
         if (_currentLineIndex < _storyLines.Count)
         {
-            Console.WriteLine(_storyLines[_currentLineIndex]);
+            string line = _storyLines[_currentLineIndex];
+            if (line.StartsWith("MAINEVENT"))
+            {
+                ExecuteCoreEvent(line);
+            }
+            else
+            {
+                Console.WriteLine(line);
+            }
             _currentLineIndex++;
         }
         else
@@ -50,14 +62,25 @@ public class GameLoop
             {
                 if (!string.IsNullOrWhiteSpace(lines[i]) && !lines[i].StartsWith("//"))
                 {
-                    // Skip level number and line number
-                    i += 2;
-                    if (i < lines.Length && !string.IsNullOrWhiteSpace(lines[i]))
+                    if (lines[i].StartsWith("MAINEVENT"))
+                    {
+                        ExecuteCoreEvent(lines[i]);
+                    }
+                    else
                     {
                         _storyLines.Add(lines[i]);
                     }
                 }
             }
         }
+    }
+
+    private void ExecuteCoreEvent(string eventLine)
+    {
+        if (eventLine.Contains("PICK_ARCHETYPE"))
+        {
+            _player = _coreEvent.PickArchetype();
+        }
+        // Add more core events as needed
     }
 }
