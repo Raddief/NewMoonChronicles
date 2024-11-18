@@ -24,6 +24,16 @@
       "id": 5,
       "content": "The world was at peace...\nBut a dark force was stirring...",
       "eventName": null
+    },
+    {
+      "id": 6,
+      "content": "The Astronaut descends onto the surface...",
+      "eventName": null
+    },
+    {
+      "id": 7,
+      "content": "The first stage begins...",
+      "eventName" : "LEVEL_START"
     }
   ]
 }

@@ -1,0 +1,69 @@
+{
+    "levels": [
+      {
+        "id": 1,
+        "description": "You step down onto the moon's surface, bleak and empty. You have four options:",
+        "options": [
+          {
+            "id": 1,
+            "action": "Wander",
+            "description": "You decide to wander around the forest.",
+            "feedback": [
+              {
+                "chance": 50,
+                "result": "You find nothing.",
+                "flag": "nothing"
+              },
+              {
+                "chance": 50,
+                "result": "You find a moon bug.",
+                "flag": "moon_bug"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "action": "Check Rocks",
+            "description": "You decide to check the rocks nearby.",
+            "feedback": [
+              {
+                "chance": 75,
+                "result": "You find a penny.",
+                "flag": "penny"
+              },
+              {
+                "chance": 25,
+                "result": "You find nothing.",
+                "flag": "nothing"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "action": "Move North",
+            "description": "You decide to move north.",
+            "feedback": [
+              {
+                "chance": 100,
+                "result": "You move to stage 2.",
+                "flag": "move_stage",
+                "nextStageId": "2"
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "action": "Shout",
+            "description": "You decide to shout and see if anyone responds.",
+            "feedback": [
+              {
+                "chance": 100,
+                "result": "You hear nothing but silence.",
+                "flag": "silence"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
