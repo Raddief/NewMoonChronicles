@@ -1,0 +1,29 @@
+{
+  "stories": [
+    {
+      "id": 1,
+      "content": "Once upon a time in a faraway land...\nThere was a brave adventurer who...",
+      "eventName": null
+    },
+    {
+      "id": 2,
+      "content": "It was a dark and stormy night...\nThe old house creaked in the wind...",
+      "eventName": "PICK_ARCHETYPE"
+    },
+    {
+      "id": 3,
+      "content": "The sun was shining brightly...\nA group of friends gathered in the park...",
+      "eventName": null
+    },
+    {
+      "id": 4,
+      "content": "The city was in chaos...\nA mysterious figure appeared in the shadows...",
+      "eventName": null
+    },
+    {
+      "id": 5,
+      "content": "The world was at peace...\nBut a dark force was stirring...",
+      "eventName": null
+    }
+  ]
+}
