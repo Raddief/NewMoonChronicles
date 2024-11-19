@@ -38,7 +38,7 @@
     {
       "id": 8,
       "content": "Jonathan is missing. Lando is worried. He needs to find Jonathan before they can leave the moon.",
-      "eventName": null
+      "eventName": "LEVEL_START"
     }
   ]
 }
