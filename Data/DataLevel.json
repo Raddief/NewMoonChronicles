@@ -10,12 +10,12 @@
             "description": "You decide to wander around the forest.",
             "feedback": [
               {
-                "chance": 90,
+                "chance": 75,
                 "result": "You find nothing.",
                 "flag": "nothing"
               },
               {
-                "chance": 10,
+                "chance": 25,
                 "result": "You find a moon bug.",
                 "flag": "moon_bug"
               }
@@ -45,7 +45,7 @@
             "feedback": [
               {
                 "chance": 100,
-                "result": "You move to stage 2.",
+                "result": "The surface seems similar.",
                 "flag": "move_stage",
                 "nextStageId": "2"
               }
@@ -77,6 +77,49 @@
           },
           {
             "id": 6,
+            "action": "Check Inventory",
+            "description": "You decide to check your inventory.",
+            "feedback": [
+              {
+                "chance": 100,
+                "result": "You open your inventory.",
+                "flag": "check_inv"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "description": "You are now in the northern area. You have two options:",
+        "options": [
+          {
+            "id": 1,
+            "action": "Shout",
+            "description": "You decide to shout and see if anyone responds.",
+            "feedback": [
+              {
+                "chance": 100,
+                "result": "You hear nothing but silence.",
+                "flag": "nothing"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "action": "Move South",
+            "description": "You decide to move back south.",
+            "feedback": [
+              {
+                "chance": 100,
+                "result": "You move back to the previous area.",
+                "flag": "move_stage",
+                "nextStageId": "1"
+              }
+            ]
+          },
+          {
+            "id": 3,
             "action": "Check Inventory",
             "description": "You decide to check your inventory.",
             "feedback": [

@@ -18,38 +18,42 @@ public class GameState
     {
         while (true)
         {
-            Level currentLevelData = levels[currentLevel];
-            Console.WriteLine(currentLevelData.description);
+            DisplayCurrentLevel();
+        }
+    }
 
-            foreach (var option in currentLevelData.options)
-            {
-                Console.WriteLine($"{option.id}. {option.action} - {option.description}");
-            }
+    private void DisplayCurrentLevel()
+    {
+        Level currentLevelData = levels[currentLevel];
+        Console.WriteLine(currentLevelData.description);
 
-            Console.Write("Choose an action: ");
-            if (int.TryParse(Console.ReadLine(), out int actionId))
+        foreach (var option in currentLevelData.options)
+        {
+            Console.WriteLine($"{option.id}. {option.action} - {option.description}");
+        }
+
+        Console.Write("Choose an action: ");
+        if (int.TryParse(Console.ReadLine(), out int actionId))
+        {
+            var selectedOption = currentLevelData.options.Find(o => o.id == actionId);
+            if (selectedOption != null)
             {
-                var selectedOption = currentLevelData.options.Find(o => o.id == actionId);
-                if (selectedOption != null)
-                {
-                    HandleAction(selectedOption);
-                }
-                else
-                {
-                    Console.WriteLine("Invalid action. Please try again.");
-                }
+                HandleAction(selectedOption);
             }
             else
             {
-                Console.WriteLine("Invalid input. Please enter a number.");
-            }
-
-            // Check if the stage has changed
-            if (currentLevelData.id != currentLevel)
-            {
-                break;
+                Console.WriteLine("Invalid action. Please try again.");
             }
         }
+        else
+        {
+            Console.WriteLine("Invalid input. Please enter a number.");
+        }
+
+        // Wait for the user to press a key before clearing the screen
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+        Console.Clear();
     }
 
     private void HandleAction(Option option)
@@ -68,9 +72,6 @@ public class GameState
                 break;
             }
         }
-
-        Console.ReadKey();
-        Console.Clear();
     }
 
     private void HandleFlag(string flag, string? nextStageId)
@@ -104,6 +105,7 @@ public class GameState
                 player.Inventory.ListItems();
                 break;
             case "open_shop":
+                // Handle opening the shop
                 Shop shop = new Shop();
                 shop.DisplayShop(player);
                 break;

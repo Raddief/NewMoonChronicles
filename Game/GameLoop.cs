@@ -14,6 +14,7 @@ public class StoryCollection
 {
     public List<Story>? stories { get; set; }
 }
+
 public class GameLoop
 {
     private int currentStoryId;
@@ -47,61 +48,60 @@ public class GameLoop
     }
 
     private void LoadStory(string jsonPath, int id)
-{
-    string jsonString = File.ReadAllText(jsonPath);
-
-    StoryCollection? storyCollection = JsonSerializer.Deserialize<StoryCollection>(jsonString);
-
-    if (storyCollection != null && storyCollection.stories != null)
     {
-        foreach (Story story in storyCollection.stories)
+        string jsonString = File.ReadAllText(jsonPath);
+
+        StoryCollection? storyCollection = JsonSerializer.Deserialize<StoryCollection>(jsonString);
+
+        if (storyCollection != null && storyCollection.stories != null)
         {
-            if (story.id == id)
+            foreach (Story story in storyCollection.stories)
             {
-                Console.WriteLine(story.content);
-                if (story.eventName != null && player != null)
+                if (story.id == id)
                 {
-                    coreEvent = new CoreEvent(player);
-                    if (story.eventName == "PICK_ARCHETYPE")
+                    Console.WriteLine(story.content);
+                    if (story.eventName != null && player != null)
                     {
-                        player = coreEvent.PickArchetype();
+                        coreEvent = new CoreEvent(player);
+                        if (story.eventName == "PICK_ARCHETYPE")
+                        {
+                            player = coreEvent.PickArchetype();
+                        }
+                        else if (story.eventName == "LEVEL_START")
+                        {
+                            Dictionary<int, Level> levels = LoadLevels("Data/DataLevel.json");
+                            GameState gameState = new GameState(player, 1, levels);
+                            gameState.Start();
+                        }
+                        currentStoryId = story.id + 1;
+                        Console.ReadKey();
+                        LoadStory(jsonPath, currentStoryId);
+                        break;
                     }
-                    else if (story.eventName == "LEVEL_START")
-                    {
-                        Dictionary<int, Level> levels = LoadLevels("Data/DataLevel.json");
-                        GameState gameState = new GameState(player, 1, levels);
-                        gameState.Start();
-                    }
-                    currentStoryId = story.id + 1;
-                    Console.ReadKey();
-                    LoadStory(jsonPath, currentStoryId);
-                    break;
                 }
             }
         }
     }
-}
 
-private Dictionary<int, Level> LoadLevels(string jsonPath)
-{
-    string jsonString = File.ReadAllText(jsonPath);
-    var levelsData = JsonSerializer.Deserialize<LevelsData>(jsonString);
-
-    Dictionary<int, Level> levels = new Dictionary<int, Level>();
-    if (levelsData != null && levelsData.levels != null)
+    private Dictionary<int, Level> LoadLevels(string jsonPath)
     {
-        foreach (var level in levelsData.levels)
+        string jsonString = File.ReadAllText(jsonPath);
+        var levelsData = JsonSerializer.Deserialize<LevelsData>(jsonString);
+
+        Dictionary<int, Level> levels = new Dictionary<int, Level>();
+        if (levelsData != null && levelsData.levels != null)
         {
-            levels.Add(level.id, level);
+            foreach (var level in levelsData.levels)
+            {
+                levels.Add(level.id, level);
+            }
         }
+
+        return levels;
     }
 
-    return levels;
-}
-
-public class LevelsData
-{
-    public List<Level> levels { get; set; }
-}
-
+    public class LevelsData
+    {
+        public List<Level> levels { get; set; }
+    }
 }
