@@ -25,7 +25,7 @@ public class GameLoop
 
     public void Start()
     {
-        player = new Player("Player", 0, 0, 0, 0, 0, 0);
+        player = new Player("Player", 0, 0, 0, 0, 0, 0, new Inventory());
         while (true)
         {
             Update(i);

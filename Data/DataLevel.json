@@ -59,7 +59,19 @@
               {
                 "chance": 100,
                 "result": "You hear nothing but silence.",
-                "flag": "silence"
+                "flag": "nothing"
+              }
+            ]
+          },
+          {
+            "id": 5,
+            "action": "Check Inventory",
+            "description": "You decide to check your inventory.",
+            "feedback": [
+              {
+                "chance": 100,
+                "result": "You open your inventory.",
+                "flag": "check_inv"
               }
             ]
           }

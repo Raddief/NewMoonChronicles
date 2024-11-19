@@ -68,6 +68,9 @@ public class GameState
                 break;
             }
         }
+
+        Console.ReadKey();
+        Console.Clear();
     }
 
     private void HandleFlag(string flag, string? nextStageId)
@@ -79,9 +82,15 @@ public class GameState
                 break;
             case "moon_bug":
                 // Handle finding a moon bug
+                Item moonBug = new Item("Moon Bug", "A rare moon bug.");
+                player.Inventory.AddItem(moonBug);
+                Console.WriteLine("You found a moon bug and added it to your inventory.");
                 break;
             case "penny":
                 // Handle finding a penny
+                Item penny = new Item("Penny", "A shiny penny.");
+                player.Inventory.AddItem(penny);
+                Console.WriteLine("You found a penny and added it to your inventory.");
                 break;
             case "move_stage":
                 // Handle moving to the next stage
@@ -90,8 +99,9 @@ public class GameState
                     currentLevel = int.Parse(nextStageId);
                 }
                 break;
-            case "silence":
-                // Handle silence
+            case "check_inv":
+                // Handle checking inventory
+                player.Inventory.ListItems();
                 break;
             default:
                 // Handle unknown flag
