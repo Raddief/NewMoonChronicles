@@ -43,15 +43,6 @@ public class CoreEvent
             }
         }
 
-        // Print player stats
-        Console.WriteLine("Data obtained. Your stats are:");
-        Console.WriteLine("Name: " + player.Stats.Name);
-        Console.WriteLine("Health Point: " + player.Stats.HealthPoint);
-        Console.WriteLine("Attack Power: " + player.Stats.AttackPower);
-        Console.WriteLine("Defense Point: " + player.Stats.DefensePoint);
-        Console.WriteLine("Agility: " + player.Stats.Agility);
-        Console.WriteLine("Experience: " + player.Stats.Experience);
-        Console.WriteLine("Level: " + player.Stats.Level);
         return player;
     }
 }
