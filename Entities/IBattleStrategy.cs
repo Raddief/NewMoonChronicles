@@ -25,19 +25,20 @@ public class FightStrategy : IBattleStrategy
 
 public class RunStrategy : IBattleStrategy
 {
+    public bool HasEscaped { get; private set; }
+
     public void Execute(Player player, Enemy enemy)
     {
-        CombatSystem combatSystem = new CombatSystem();
-        if (combatSystem.CanEscape(player.Stats.Agility, enemy.Stats.Agility))
+        Random random = new Random();
+        int chance = random.Next(100); // Generate a random number between 0 and 99
+        if (chance < 50) // 50% success rate
         {
-            Console.WriteLine("Player successfully escapes!");
-            // Escape logic, e.g., end the battle (set a flag or exit the loop)
+            HasEscaped = true;
         }
         else
         {
-            Console.WriteLine("Player fails to escape! The enemy counterattacks!");
-            int counterAttackDamage = combatSystem.CalculateDamage(enemy.Stats.AttackPower, player.Stats.DefensePoint);
-            player.TakeDamage(counterAttackDamage);
+            HasEscaped = false;
+            Console.WriteLine("The enemy latches onto you!");
         }
     }
 }
@@ -45,19 +46,21 @@ public class RunStrategy : IBattleStrategy
 
 public class NegotiateStrategy : IBattleStrategy
 {
+    public bool HasNegotiated { get; private set; }
+
     public void Execute(Player player, Enemy enemy)
     {
         Random random = new Random();
-        int chance = random.Next(100);
-        if (chance < 30)
+        int chance = random.Next(100); // Generate a random number between 0 and 99
+        if (chance < 30) // 30% success rate
         {
-            Console.WriteLine("The enemy agrees to negotiate and leaves peacefully.");
+            HasNegotiated = true;
+            Console.WriteLine("The heat dissipates...");
         }
         else
         {
-            Console.WriteLine("Negotiation fails! The enemy counterattacks!");
-            int retaliationDamage = enemy.Stats.AttackPower / 2;
-            player.TakeDamage(retaliationDamage);
+            HasNegotiated = false;
+            Console.WriteLine("It rages on!");
         }
     }
 }

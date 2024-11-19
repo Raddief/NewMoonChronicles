@@ -1,18 +1,27 @@
 public class CombatSystem
 {
+    private bool battleEnded;
+
     public void StartCombat(Player player, Enemy enemy)
     {
+        battleEnded = false;
+
         Console.WriteLine("Battle Start!");
         Console.WriteLine($"Player: {player.Stats.Name}, HP: {player.Stats.HealthPoint}, Level: {player.Stats.Level}");
         Console.WriteLine($"Enemy: {enemy.Stats.Name}, HP: {enemy.Stats.HealthPoint}, Level: {enemy.Stats.Level}");
 
-        while (player.Stats.HealthPoint > 0 && enemy.Stats.HealthPoint > 0)
+        while (player.Stats.HealthPoint > 0 && enemy.Stats.HealthPoint > 0 && !battleEnded)
         {
             ExecutePlayerTurn(player, enemy);
 
             if (enemy.Stats.HealthPoint <= 0)
             {
                 Console.WriteLine("\nVictory! The enemy has been defeated.");
+                break;
+            }
+
+            if (battleEnded)
+            {
                 break;
             }
 
@@ -74,6 +83,17 @@ public class CombatSystem
             {
                 Console.WriteLine("Executing player's action...");
                 selectedStrategy.Execute(player, enemy);
+
+                if (selectedStrategy is RunStrategy runStrategy && runStrategy.HasEscaped)
+                {
+                    Console.WriteLine("You successfully escaped!");
+                    battleEnded = true;
+                }
+                else if (selectedStrategy is NegotiateStrategy negotiateStrategy && negotiateStrategy.HasNegotiated)
+                {
+                    Console.WriteLine("You successfully negotiated with the enemy!");
+                    battleEnded = true;
+                }
             }
 
             break; // Exit the loop once a valid action is performed
@@ -100,5 +120,4 @@ public class CombatSystem
         int enemyRoll = random.Next(1, enemyAgility + 1);
         return playerRoll > enemyRoll;
     }
-
 }

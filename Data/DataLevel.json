@@ -129,6 +129,26 @@
                 "flag": "check_inv"
               }
             ]
+          },
+          {
+            "id": 4,
+            "action": "Combat Dummy",
+            "description": "Test the combat system [!]",
+            "feedback": [
+              {
+                "chance": 100,
+                "result": "You enter a dreamlike state.",
+                "flag": "combat",
+                "entityName": "Space Goblin... or something.",
+                "hp": 50,
+                "attack": 60,
+                "defense": 5,
+                "agility": 5,
+                "experience": 0,
+                "level": 1,
+                "gold": 7
+              }
+            ]
           }
         ]
       }
