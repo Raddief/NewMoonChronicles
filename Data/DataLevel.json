@@ -10,12 +10,12 @@
             "description": "You decide to wander around the forest.",
             "feedback": [
               {
-                "chance": 50,
+                "chance": 90,
                 "result": "You find nothing.",
                 "flag": "nothing"
               },
               {
-                "chance": 50,
+                "chance": 10,
                 "result": "You find a moon bug.",
                 "flag": "moon_bug"
               }
@@ -27,12 +27,12 @@
             "description": "You decide to check the rocks nearby.",
             "feedback": [
               {
-                "chance": 75,
+                "chance": 40,
                 "result": "You find a penny.",
                 "flag": "penny"
               },
               {
-                "chance": 25,
+                "chance": 60,
                 "result": "You find nothing.",
                 "flag": "nothing"
               }
@@ -65,6 +65,18 @@
           },
           {
             "id": 5,
+            "action": "Approach Shopkeeper",
+            "description": "Check the shopkeeper.",
+            "feedback": [
+              {
+                "chance": 100,
+                "result": "You walk towards the strange humanoid.",
+                "flag": "open_shop"
+              }
+            ]
+          },
+          {
+            "id": 6,
             "action": "Check Inventory",
             "description": "You decide to check your inventory.",
             "feedback": [
