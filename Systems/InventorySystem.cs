@@ -37,6 +37,7 @@ public class Inventory
     {
         return items.Find(i => i.Name == itemName);
     }
+    
     public int GetItemQuantity(string itemName)
     {
         var item = items.Find(i => i.Name == itemName);
