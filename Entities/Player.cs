@@ -2,10 +2,10 @@ public class Player : Entity
 {
     public Inventory Inventory { get; private set; }
 
-    public Player(string name, int health, int attack, int defense, int agility, int experience, int level)
+    public Player(string name, int health, int attack, int defense, int agility, int experience, int level, Inventory inventory)
         : base(name, health, attack, defense, agility, experience, level)
     {
-        Inventory = new Inventory();
+        Inventory = inventory;
     }
 
     public void Heal(int healing)

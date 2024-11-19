@@ -1,6 +1,6 @@
 public abstract class Entity
 {
-    public EntityStats Stats { get; private set; }
+    public EntityStats Stats { get; set; }
 
     public Entity(string name, int health, int attack, int defense, int agility, int experience, int level)
     {

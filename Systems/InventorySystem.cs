@@ -33,6 +33,16 @@ public class Inventory
         }
     }
 
+    public Item FindItem(string itemName)
+    {
+        return items.Find(i => i.Name == itemName);
+    }
+    public int GetItemQuantity(string itemName)
+    {
+        var item = items.Find(i => i.Name == itemName);
+        return item != null ? item.Quantity : 0;
+    }
+
     public void UseItem(string itemName)
     {
         var item = items.Find(i => i.Name == itemName);
