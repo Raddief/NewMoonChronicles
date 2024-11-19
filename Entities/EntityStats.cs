@@ -1,10 +1,8 @@
-using System;
-
-[Serializable]
 public class EntityStats
 {
     public string Name { get; private set; }
     public int HealthPoint { get; set; }
+    public int MaxHealthPoint { get; private set; }
     public int AttackPower { get; private set; }
     public int DefensePoint { get; private set; }
     public int Agility { get; private set; }
@@ -15,6 +13,7 @@ public class EntityStats
     {
         Name = name;
         HealthPoint = healthPoint;
+        MaxHealthPoint = healthPoint; // Initial max health equals starting health
         AttackPower = attackPower;
         DefensePoint = defensePoint;
         Agility = agility;
@@ -37,7 +36,8 @@ public class EntityStats
         Level++;
 
         // Increase stats on level up
-        HealthPoint += 10;
+        MaxHealthPoint += 10;
+        HealthPoint = MaxHealthPoint; // Fully heal on level up
         AttackPower += 5;
         DefensePoint += 5;
         Agility += 2;

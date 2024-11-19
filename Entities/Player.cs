@@ -1,13 +1,20 @@
 public class Player : Entity
 {
+    public Inventory Inventory { get; private set; }
 
-    public Inventory Inventory { get; set; }
-    public Player(string name, int health, int attack, int defense, int speed, int experience, int level, Inventory inventory) : base(name, health, attack, defense, speed, experience, level)
+    public Player(string name, int health, int attack, int defense, int agility, int experience, int level)
+        : base(name, health, attack, defense, agility, experience, level)
     {
-        Inventory = inventory;
+        Inventory = new Inventory();
     }
-    public void Move(string direction)
+
+    public void Heal(int healing)
     {
-        Console.WriteLine($"Player moves {direction}");
+        Stats.HealthPoint += healing;
+        if (Stats.HealthPoint > Stats.MaxHealthPoint)
+        {
+            Stats.HealthPoint = Stats.MaxHealthPoint;
+        }
+        Console.WriteLine($"Player heals for {healing} HP! Current HP: {Stats.HealthPoint}/{Stats.MaxHealthPoint}");
     }
 }

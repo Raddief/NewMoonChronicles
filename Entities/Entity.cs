@@ -1,24 +1,16 @@
 public abstract class Entity
 {
-    private EntityStats _stats;
+    public EntityStats Stats { get; private set; }
 
-    public EntityStats Stats
+    public Entity(string name, int health, int attack, int defense, int agility, int experience, int level)
     {
-        get { return _stats; }
-        set { _stats = value; }
-    }
-
-    public Entity(string name, int healthPoint, int attackPower, int defensePoint, int agility, int experience, int level)
-    {
-        _stats = new EntityStats(name, healthPoint, attackPower, defensePoint, agility, experience, level);
+        Stats = new EntityStats(name, health, attack, defense, agility, experience, level);
     }
 
     public void TakeDamage(int damage)
     {
-        _stats.HealthPoint -= damage;
-        if (_stats.HealthPoint < 0)
-        {
-            _stats.HealthPoint = 0;
-        }
+        Stats.HealthPoint -= damage;
+        Stats.HealthPoint = Math.Max(Stats.HealthPoint, 0);
+        Console.WriteLine($"{Stats.Name} takes {damage} damage! Remaining HP: {Stats.HealthPoint}");
     }
 }
