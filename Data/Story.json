@@ -2,13 +2,43 @@
   "stories": [
     {
       "id": 1,
-      "content": "Once upon a time in a faraway land...\nThere was a brave adventurer who...",
+      "content": "Mission 193: Astronaut Lando and Jonathan are on a mission to the moon. They are tasked with collecting moon rocks and bringing them back to Earth. They are nervous but excited. This mission has been prepared for so long. They are ready to go and ready to make history.",
       "eventName": null
     },
     {
       "id": 2,
-      "content": "It was a dark and stormy night...\nThe old house creaked in the wind...",
+      "content": "Lando: \"Jonathan, are you ready?\"\nJonathan: \"Yes, I am. Let's do this!\"\nLand: \"Alright, let's go!\"",
       "eventName": "PICK_ARCHETYPE"
+    },
+    {
+      "id": 3,
+      "content": "Lando: \"We are going to that crater over there to pick up the rocks.\"\nJonathan: \"Got it!\"\nLando: \"Report back to me when you are done.\"",
+      "eventName": null
+    },
+    {
+      "id": 4,
+      "content": "...",
+      "eventName": null
+    },
+    {
+      "id": 5,
+      "content": "Lando: \"Hey Jonathan, are you done yet?\"",
+      "eventName": null
+    },
+    {
+      "id": 6,
+      "content": "...",
+      "eventName": null
+    },
+    {
+      "id": 7,
+      "content": "Lando: \"Jonathan?\"",
+      "eventName": null
+    },
+    {
+      "id": 8,
+      "content": "Jonathan is missing. Lando is worried. He needs to find Jonathan before they can leave the moon.",
+      "eventName": null
     }
   ]
 }
