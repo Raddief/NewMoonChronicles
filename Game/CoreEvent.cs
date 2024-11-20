@@ -11,12 +11,13 @@ public class CoreEvent
     {
         while (true)
         {
-            Console.WriteLine("What's your identity? ");
+            Console.WriteLine("(suddenly you remember your past life) What's your identity?");
             Console.WriteLine("1. Warrior");
             Console.WriteLine("2. Mage");
             Console.WriteLine("3. Rogue");
+            Console.Write("\nChoose your identity: ");
 
-            string input = Console.ReadLine();
+            string? input = Console.ReadLine();
 
             if (int.TryParse(input, out int choice))
             {
@@ -35,7 +36,7 @@ public class CoreEvent
                         Console.WriteLine("Invalid choice. Please try again.");
                         continue;
                 }
-                break; // Exit the loop if a valid choice is made
+                break;
             }
             else
             {
@@ -43,14 +44,18 @@ public class CoreEvent
             }
         }
 
-        Console.WriteLine("Data obtained. Your stats are:");
-        Console.WriteLine("Name: " + player.Stats.Name);
-        Console.WriteLine("Health Point: " + player.Stats.HealthPoint);
-        Console.WriteLine("Attack Power: " + player.Stats.AttackPower);
-        Console.WriteLine("Defense Point: " + player.Stats.DefensePoint);
-        Console.WriteLine("Agility: " + player.Stats.Agility);
-        Console.WriteLine("Experience: " + player.Stats.Experience);
-        Console.WriteLine("Level: " + player.Stats.Level);
+        Console.WriteLine("\n##########################################");
+        Console.WriteLine("#            Identity Obtained!          #");
+        Console.WriteLine("##########################################");
+        Console.WriteLine("# Name        : " + player.Stats.Name.PadRight(25) + "#");
+        Console.WriteLine("# Vitality    : " + player.Stats.HealthPoint.ToString().PadRight(25) + "#");
+        Console.WriteLine("# Strength    : " + player.Stats.AttackPower.ToString().PadRight(25) + "#");
+        Console.WriteLine("# Fortitude   : " + player.Stats.DefensePoint.ToString().PadRight(25) + "#");
+        Console.WriteLine("# Agility     : " + player.Stats.Agility.ToString().PadRight(25) + "#");
+        Console.WriteLine("# Experience  : " + player.Stats.Experience.ToString().PadRight(25) + "#");
+        Console.WriteLine("# Level       : " + player.Stats.Level.ToString().PadRight(25) + "#");
+        Console.WriteLine("##########################################");
+
         return player;
     }
 }

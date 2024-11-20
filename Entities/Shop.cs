@@ -88,16 +88,23 @@ public class Shop
     private void DisplaySellMenu(Player player)
     {
         Console.WriteLine("Your inventory:");
-        player.Inventory.ListItems();
+        player.Inventory.ListItem();
 
         Console.Write("Enter the name of the item you want to sell: ");
         var itemName = Console.ReadLine();
-        var item = player.Inventory.FindItem(itemName);
-        if (item != null)
+        var item1 = player.Inventory.FindItem(itemName);
+        var item2 = player.Equipment.FindItem(itemName);
+        if (item1 != null)
         {
             player.Inventory.RemoveItem(itemName, 1);
-            player.Inventory.AddItem(new Item("Penny", "Currency", item.Price));
-            Console.WriteLine($"You sold {item.Name} for {item.Price} pennies.");
+            player.Inventory.AddItem(new Item("Penny", "Currency", item1.Price));
+            Console.WriteLine($"You sold {itemName} for {item1.Price} pennies.");
+        }
+        else if (item2 != null)
+        {
+            player.Equipment.RemoveItem(itemName, 1);
+            player.Inventory.AddItem(new Item("Penny", "Currency", item2.Price));
+            Console.WriteLine($"You sold {itemName} for {item2.Price} pennies.");
         }
         else
         {

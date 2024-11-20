@@ -2,7 +2,7 @@
     "levels": [
       {
         "id": 1,
-        "description": "You step down onto the moon's surface, bleak and empty. You have four options:",
+        "description": "You step down onto the moon's surface, bleak and empty. What will you do?",
         "options": [
           {
             "id": 1,
@@ -16,8 +16,8 @@
               },
               {
                 "chance": 25,
-                "result": "You find a moon bug.",
-                "flag": "moon_bug"
+                "result": "A strange object whispers to you.",
+                "flag": "get_item"
               }
             ]
           },
@@ -28,8 +28,8 @@
             "feedback": [
               {
                 "chance": 40,
-                "result": "You find a penny.",
-                "flag": "penny"
+                "result": "You got a hold of something.",
+                "flag": "get_item"
               },
               {
                 "chance": 60,
@@ -86,12 +86,24 @@
                 "flag": "check_inv"
               }
             ]
+          },
+          {
+            "id": 7,
+            "action": "Check Equipment",
+            "description": "You decide to check your equipment.",
+            "feedback": [
+              {
+                "chance": 100,
+                "result": "You open your equipment.",
+                "flag": "check_equip"
+              }
+            ]
           }
         ]
       },
       {
         "id": 2,
-        "description": "You are now in the northern area. You have two options:",
+        "description": "You are now in the northern area. There appears to be some kind of creature not far from your location. What will you do?",
         "options": [
           {
             "id": 1,
@@ -111,10 +123,23 @@
             "description": "You decide to move back south.",
             "feedback": [
               {
-                "chance": 100,
+                "chance": 50,
                 "result": "You move back to the previous area.",
                 "flag": "move_stage",
                 "nextStageId": "1"
+              },
+              {
+                "chance": 50,
+                "result": "Someone ambushed you.",
+                "flag": "combat",
+                "entityName": "Space Monkey",
+                "hp": 150,
+                "attack": 20,
+                "defense": 5,
+                "agility": 25,
+                "experience": 0,
+                "level": 1,
+                "gold": 10
               }
             ]
           },
@@ -132,16 +157,28 @@
           },
           {
             "id": 4,
-            "action": "Combat Dummy",
-            "description": "Test the combat system [!]",
+            "action": "Check Equipment",
+            "description": "You decide to check your equipment.",
+            "feedback": [
+              {
+                "chance": 100,
+                "result": "You open your equipment.",
+                "flag": "check_equip"
+              }
+            ]
+          },
+          {
+            "id": 5,
+            "action": "Fight",
+            "description": "Test the combat system [!!]",
             "feedback": [
               {
                 "chance": 100,
                 "result": "You enter a dreamlike state.",
                 "flag": "combat",
-                "entityName": "Space Goblin... or something.",
-                "hp": 50,
-                "attack": 60,
+                "entityName": "Space Goblin",
+                "hp": 200,
+                "attack": 30,
                 "defense": 5,
                 "agility": 5,
                 "experience": 0,

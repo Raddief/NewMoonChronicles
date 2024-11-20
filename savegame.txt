@@ -1,0 +1,12 @@
+PlayerName=Warrior
+Health=150
+MaxHealth=150
+AttackPower=75
+DefensePoint=50
+Agility=30
+Experience=0
+Level=1
+CurrentLevel=1
+[Inventory]
+Moon Bug,A rare moon bug.,1,5
+[Equipment]

@@ -1,13 +1,13 @@
 public class EntityStats
 {
-    public string Name { get; private set; }
+    public string Name { get; set; }
     public int HealthPoint { get; set; }
-    public int MaxHealthPoint { get; private set; }
+    public int MaxHealthPoint { get; set; }
     public int AttackPower { get; set; }
     public int DefensePoint { get; set; }
-    public int Agility { get; private set; }
-    public int Experience { get; private set; }
-    public int Level { get; private set; }
+    public int Agility { get; set; }
+    public int Experience { get; set; }
+    public int Level { get; set; }
 
     public EntityStats(string name, int healthPoint, int attackPower, int defensePoint, int agility, int experience, int level)
     {
