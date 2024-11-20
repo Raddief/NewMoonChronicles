@@ -45,4 +45,16 @@ public class EntityDirector
             .SetLevel(1)
             .Build();
     }
+
+    public EntityStats ConstructBoss1(){
+        return _builder
+            .SetName("Charybdis")
+            .SetHealthPoint(400)
+            .SetAttackPower(15)
+            .SetDefensePoint(45)
+            .SetAgility(40)
+            .SetExperience(0)
+            .SetLevel(1)
+            .Build();
+    }
 }

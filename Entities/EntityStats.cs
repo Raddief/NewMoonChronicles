@@ -3,8 +3,8 @@ public class EntityStats
     public string Name { get; private set; }
     public int HealthPoint { get; set; }
     public int MaxHealthPoint { get; private set; }
-    public int AttackPower { get; private set; }
-    public int DefensePoint { get; private set; }
+    public int AttackPower { get; set; }
+    public int DefensePoint { get; set; }
     public int Agility { get; private set; }
     public int Experience { get; private set; }
     public int Level { get; private set; }

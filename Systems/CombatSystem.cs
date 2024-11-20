@@ -42,7 +42,7 @@ public class CombatSystem
         }
     }
 
-    private void ExecutePlayerTurn(Player player, Enemy enemy)
+    public void ExecutePlayerTurn(Player player, Enemy enemy)
     {
         while (true) // Loop until a valid action is performed
         {
