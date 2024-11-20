@@ -1,6 +1,6 @@
 public class Inventory
 {
-    private List<Item> items;
+    public List<Item> items;
 
     public Inventory()
     {
@@ -35,9 +35,9 @@ public class Inventory
 
     public Item FindItem(string itemName)
     {
-        return items.Find(i => i.Name == itemName);
+        return items.Find(i => i.Name == itemName)!;
     }
-    
+
     public int GetItemQuantity(string itemName)
     {
         var item = items.Find(i => i.Name == itemName);
@@ -71,7 +71,7 @@ public class Inventory
         }
     }
 
-    public void ListItems()
+    public void ListItem()
     {
         if (items.Count == 0)
         {
@@ -79,14 +79,20 @@ public class Inventory
         }
         else
         {
-            Console.WriteLine("Inventory:");
+            Console.WriteLine("##########################################");
+            Console.WriteLine("#               Inventory                #");
+            Console.WriteLine("##########################################");
+
             foreach (var item in items)
             {
-                Console.WriteLine($"{item.Name} (x{item.Quantity})");
+                Console.WriteLine($"# {item.Name.PadRight(20)} (x{item.Quantity.ToString().PadLeft(4)})           #");
             }
+
+            Console.WriteLine("##########################################");
+
         }
     }
-        public List<Item> GetItems()
+    public List<Item> GetItems()
     {
         return items;
     }

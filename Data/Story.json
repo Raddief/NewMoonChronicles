@@ -7,36 +7,56 @@
     },
     {
       "id": 2,
-      "content": "Lando: \"Jonathan, are you ready?\"\nJonathan: \"Yes, I am. Let's do this!\"\nLand: \"Alright, let's go!\"",
-      "eventName": "PICK_ARCHETYPE"
+      "content": "Lando: \"Jonathan, are you ready?\"",
+      "eventName": null
     },
     {
       "id": 3,
-      "content": "Lando: \"We are going to that crater over there to pick up the rocks.\"\nJonathan: \"Got it!\"\nLando: \"Report back to me when you are done.\"",
+      "content": "Jonathan: \"Yes, I am. Let's do this!\"",
       "eventName": null
     },
     {
       "id": 4,
-      "content": "...",
-      "eventName": null
+      "content": "Lando: \"Alright, let's go!\"",
+      "eventName": "PICK_ARCHETYPE"
     },
     {
       "id": 5,
-      "content": "Lando: \"Hey Jonathan, are you done yet?\"",
+      "content": "Lando: \"We are going to that crater over there to pick up the rocks.\"",
       "eventName": null
     },
     {
       "id": 6,
-      "content": "...",
+      "content": "Jonathan: \"Got it!\"",
       "eventName": null
     },
     {
       "id": 7,
-      "content": "Lando: \"Jonathan?\"",
+      "content": "Lando: \"Report back to me when you are done.\"",
       "eventName": null
     },
     {
       "id": 8,
+      "content": "...",
+      "eventName": null
+    },
+    {
+      "id": 9,
+      "content": "Lando: \"Hey Jonathan, are you done yet?\"",
+      "eventName": null
+    },
+    {
+      "id": 10,
+      "content": "...",
+      "eventName": null
+    },
+    {
+      "id": 11,
+      "content": "Lando: \"Jonathan?\"",
+      "eventName": null
+    },
+    {
+      "id": 12,
       "content": "Jonathan is missing. Lando is worried. He needs to find Jonathan before they can leave the moon.",
       "eventName": "LEVEL_START"
     }

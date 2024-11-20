@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 public class GameState
 {
@@ -20,7 +21,17 @@ public class GameState
     {
         while (true)
         {
-            DisplayCurrentLevel();
+            Console.WriteLine("Press 'S' to save or any other key to continue...");
+            var input = Console.ReadKey(true).Key;
+
+            if (input == ConsoleKey.S)
+            {
+                SaveGame("savegame.txt");
+            }
+            else
+            {
+                DisplayCurrentLevel();
+            }
         }
     }
 
@@ -83,17 +94,28 @@ public class GameState
             case "nothing":
                 // Handle nothing found
                 break;
-            case "moon_bug":
-                // Handle finding a moon bug
-                Item moonBug = new Item("Moon Bug", "A rare moon bug.", 1, 5);
-                player.Inventory.AddItem(moonBug);
-                Console.WriteLine("You found a moon bug and added it to your inventory.");
-                break;
-            case "penny":
-                // Handle finding a penny
-                Item penny = new Item("Penny", "A shiny penny.", 1, 1);
-                player.Inventory.AddItem(penny);
-                Console.WriteLine("You found a penny and added it to your inventory.");
+            case "get_item":
+                Random random = new Random();
+                int chance = random.Next(1, 101); // Generates a number between 1 and 100
+
+                if (chance <= 60) // 60% chance to find a Moon Bug
+                {
+                    Item moonBug = new Item("Moon Bug", "A rare moon bug.", 1, 5);
+                    player.Inventory.AddItem(moonBug);
+                    Console.WriteLine("You found a Moon Bug and added it to your inventory.");
+                }
+                else if (chance <= 99) // 39% chance to find a Penny
+                {
+                    Item penny = new Item("Penny", "A shiny penny. Gotta worth something!", 1, 1);
+                    player.Inventory.AddItem(penny);
+                    Console.WriteLine("You found a Penny and added it to your inventory.");
+                }
+                else if (chance <= 100) // 1% chance to find a Blood Sword
+                {
+                    Item bloodSword = new Item("Blood Sword", "A dangerous sword.", 1, 10);
+                    player.Equipment.AddItem(bloodSword);
+                    Console.WriteLine("You found a Blood Sword and added it to your inventory.");
+                }
                 break;
             case "move_stage":
                 // Handle moving to the next stage
@@ -104,7 +126,11 @@ public class GameState
                 break;
             case "check_inv":
                 // Handle checking inventory
-                player.Inventory.ListItems();
+                player.Inventory.ListItem();
+                break;
+            case "check_equip":
+                // Handle checking equipment
+                player.Equipment.ListItem(player);
                 break;
             case "open_shop":
                 // Handle opening the shop
@@ -141,6 +167,47 @@ public class GameState
                 break;
         }
     }
+
+    public void SaveGame(string filePath)
+    {
+        try
+        {
+            // Construct save data as plain text
+            var saveData = new StringBuilder();
+            saveData.AppendLine($"PlayerName={player.Stats.Name}");
+            saveData.AppendLine($"Health={player.Stats.HealthPoint}");
+            saveData.AppendLine($"MaxHealth={player.Stats.MaxHealthPoint}");
+            saveData.AppendLine($"AttackPower={player.Stats.AttackPower}");
+            saveData.AppendLine($"DefensePoint={player.Stats.DefensePoint}");
+            saveData.AppendLine($"Agility={player.Stats.Agility}");
+            saveData.AppendLine($"Experience={player.Stats.Experience}");
+            saveData.AppendLine($"Level={player.Stats.Level}");
+            saveData.AppendLine($"CurrentLevel={currentLevel}");
+
+            // Inventory items
+            saveData.AppendLine("[Inventory]");
+            foreach (var item in player.Inventory.items)
+            {
+                saveData.AppendLine($"{item.Name},{item.Description},{item.Quantity},{item.Price}");
+            }
+
+            // Equipment items
+            saveData.AppendLine("[Equipment]");
+            foreach (var equipment in player.Equipment.items)
+            {
+                saveData.AppendLine($"{equipment.Name},{equipment.Description},{equipment.Quantity},{equipment.Price}");
+            }
+
+            // Write to file
+            File.WriteAllText(filePath, saveData.ToString());
+            Console.WriteLine("Game saved successfully.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Failed to save game: {ex.Message}");
+        }
+    }
+
 }
 
 public class Level

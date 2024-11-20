@@ -21,19 +21,29 @@ public class Item
 
     public void Use(Player player)
     {
-        if (Name == "Potion")
+        if (Name == "Moon Bug")
         {
-            Console.WriteLine($"Using {Name}. Restores 20 HP.");
-            player.Heal(20); // Call the Heal method in Player
+            player.Heal(5);
         }
-        else if (Name == "Elixir")
+        else if (Name == "Blood Sword")
         {
-            Console.WriteLine($"Using {Name}. Restores 50 HP.");
-            player.Heal(50); // Call the Heal method in Player
+            player.changeAttack(5);
         }
         else
         {
             Console.WriteLine($"Using {Name}. No specific effect defined.");
+        }
+    }
+
+    public void Unuse(Player player)
+    {
+        if (Name == "Blood Sword")
+        {
+            player.changeAttack(-5);
+        }
+        else
+        {
+            Console.WriteLine($"No {Name}.");
         }
     }
 
