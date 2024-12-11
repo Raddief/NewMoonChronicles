@@ -14,6 +14,9 @@ public class CombatSystem
         {
             ExecutePlayerTurn(player, enemy);
 
+            // Update skill cooldowns after player's turn
+            player.UpdateSkillCooldowns();
+            
             if (enemy.Stats.HealthPoint <= 0)
             {
                 Console.WriteLine("\nVictory! The enemy has been defeated.");
@@ -51,6 +54,7 @@ public class CombatSystem
             Console.WriteLine("2. Run");
             Console.WriteLine("3. Use Item");
             Console.WriteLine("4. Negotiate");
+            Console.WriteLine("5. Use Skill");
             Console.Write("Your choice: ");
             string? choice = Console.ReadLine();
 
@@ -60,6 +64,7 @@ public class CombatSystem
                 "2" => new RunStrategy(),
                 "3" => new ItemStrategy(),
                 "4" => new NegotiateStrategy(),
+                "5" => new SkillStrategy(),
                 _ => null
             };
 
@@ -120,4 +125,6 @@ public class CombatSystem
         int enemyRoll = random.Next(1, enemyAgility + 1);
         return playerRoll > enemyRoll;
     }
+    // Di dalam CombatSystem atau Player class
+
 }

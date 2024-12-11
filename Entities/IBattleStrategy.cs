@@ -119,3 +119,47 @@ public class ItemStrategy : IBattleStrategy
         }
     }
 }
+
+public class SkillStrategy : IBattleStrategy 
+{
+    public void Execute(Player player, Enemy enemy) 
+    {
+        // Display available skills
+        Console.WriteLine("Available Skills:");
+        for (int i = 0; i < player.Skills.Count; i++) 
+        {
+            Skill skill = player.Skills[i];
+            string cooldownStatus = skill.CanUse() ? "Ready" : $"Cooldown: {skill.CurrentCooldown}";
+            Console.WriteLine($"{i + 1}. {skill.Name} ({cooldownStatus})"); 
+        }
+
+        // If no skills available
+        if (player.Skills.Count == 0) 
+        {
+            Console.WriteLine("No skills available.");
+            return;
+        }
+
+        // Prompt for skill selection
+        Console.Write("Choose a skill to use (0 to cancel): ");
+        if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice <= player.Skills.Count) 
+        {
+            Skill selectedSkill = player.Skills[choice - 1];
+
+            // Check if skill can be used
+            if (selectedSkill.CanUse()) 
+            {
+                // Execute the skill
+                selectedSkill.Execute(player, enemy);
+            }
+            else 
+            {
+                Console.WriteLine($"{selectedSkill.Name} is on cooldown. Cannot use this skill right now.");
+            }
+        }
+        else if (choice != 0) 
+        {
+            Console.WriteLine("Invalid skill selection.");
+        }
+    }
+}

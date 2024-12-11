@@ -9,12 +9,14 @@ public class GameState
     private Dictionary<int, Level> levels;
 
     private CombatSystem combatSystem;
+    private QuestManager questManager; // Menambahkan QuestManager (baru)
 
     public GameState(Player player, int currentLevel, Dictionary<int, Level> levels)
     {
         this.player = player;
         this.currentLevel = currentLevel;
         this.levels = levels;
+        this.questManager = new QuestManager(); // Inisialisasi QuestManager(baru)
     }
 
     public void Start()
